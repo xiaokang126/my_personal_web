@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陶毅远 · 个人简历</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+    <style>
+        /* ===== CSS Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1a2a4a;
+            --primary-light: #2a4a7a;
+            --accent: #4a90d9;
+            --accent-light: #6aafe0;
+            --text: #2c3e50;
+            --text-light: #6c7a8a;
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 16px;
+            --max-width: 960px;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                         "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--primary-light); }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #3a6a9a 100%);
+            color: #fff;
+            overflow: hidden;
+            padding: 60px 20px;
+        }
+
+        /* 粒子背景 */
+        .hero-particles { position: absolute; inset: 0; overflow: hidden; }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        @keyframes float {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .avatar {
+            width: 120px; height: 120px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .avatar:hover { transform: scale(1.05); }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+        .hero .subtitle2 {
+            font-size: 1rem;
+            opacity: 0.75;
+            margin-bottom: 20px;
+        }
+        .hero .contact-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+        .hero .contact-row a,
+        .hero .contact-row span {
+            color: rgba(255,255,255,0.85);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .hero .contact-row a:hover { color: #fff; }
+        .icon { font-style: normal; }
+
+        /* ===== Main Container ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== Section Titles ===== */
+        section { padding: 60px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px; height: 3px;
+            background: var(--accent);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== Education ===== */
+        .edu-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .edu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .edu-header h3 { font-size: 1.3rem; color: var(--primary); }
+        .edu-header .date { color: var(--text-light); font-size: 0.9rem; }
+        .edu-detail { color: var(--text-light); font-size: 0.95rem; margin-bottom: 8px; }
+        .edu-gpa {
+            display: inline-block;
+            background: var(--bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .edu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .edu-tags .tag {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== Research Cards ===== */
+        .research-grid { display: flex; flex-direction: column; gap: 24px; }
+        .research-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--accent);
+        }
+        .research-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .research-card h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .research-card .meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        .research-card ul {
+            padding-left: 20px;
+            color: var(--text);
+            font-size: 0.92rem;
+        }
+        .research-card li {
+            margin-bottom: 6px;
+            list-style: none;
+            position: relative;
+            padding-left: 16px;
+        }
+        .research-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* ===== Skills ===== */
+        .skills-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .skill-group h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tags .tag {
+            background: var(--card);
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .skill-tags .tag:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .skill-tags .tag .level {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-left: 4px;
+        }
+
+        /* ===== Awards ===== */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .award-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.3s;
+        }
+        .award-card:hover { transform: translateY(-3px); }
+        .award-icon {
+            flex-shrink: 0;
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .award-icon.gold { background: linear-gradient(135deg, #f6d365, #fda085); }
+        .award-icon.blue { background: linear-gradient(135deg, #a8c0ff, #3f6ec6); }
+        .award-icon.green { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+        .award-icon.purple { background: linear-gradient(135deg, #c471f5, #fa71cd); }
+        .award-icon.orange { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+
+        .award-info h4 { font-size: 0.95rem; color: var(--primary); }
+        .award-info .date { font-size: 0.8rem; color: var(--text-light); }
+
+        /* ===== Personal Experience ===== */
+        .exp-list {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+        }
+        .exp-list li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .exp-list li:last-child { border-bottom: none; }
+        .exp-list .dot {
+            flex-shrink: 0;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid #e8ecf0;
+        }
+
+        /* ===== Scroll Animation ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .contact-row { font-size: 0.85rem; gap: 10px 16px; }
+            .edu-card, .research-card, .exp-list { padding: 20px; }
+            .edu-header { flex-direction: column; }
+            .awards-grid { grid-template-columns: 1fr; }
+            section { padding: 40px 0; }
+            .section-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+        <div class="avatar">🎓</div>
+        <h1>陶毅远</h1>
+        <p class="subtitle">物理学 · 上海科技大学</p>
+        <p class="subtitle2">GPA 3.75 / 4.0 · 年级排名 7/51</p>
+        <div class="contact-row">
+            <span>📞 18989550952</span>
+            <a href="mailto:taoyy2023@shanghaitech.edu.cn">✉️ taoyy2023@shanghaitech.edu.cn</a>
+            <span>📍 上海 · 浙江</span>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== MAIN ==================== -->
+<main class="container">
+
+    <!-- ===== 教育经历 ===== -->
+    <section id="education" class="fade-in">
+        <h2 class="section-title">🎓 教育经历</h2>
+        <div class="edu-card">
+            <div class="edu-header">
+                <h3>上海科技大学 · 物理学 本科</h3>
+                <span class="date">2023.09 – 2027.07（预计）</span>
+            </div>
+            <div class="edu-detail">
+                高考 <strong>666分</strong> 考入（超同年浙江大学663浙江录取线）
+            </div>
+            <span class="edu-gpa">📊 GPA 3.75 · RANK 7/51</span>
+            <div class="edu-tags">
+                <span class="tag">数学分析 I (A)</span>
+                <span class="tag">数学分析 II (A)</span>
+                <span class="tag">线性代数 I (A)</span>
+                <span class="tag">线性代数 II (A)</span>
+                <span class="tag">数值分析 (A+)</span>
+                <span class="tag">数学物理方法 I (A)</span>
+                <span class="tag">数学物理方法 II (A+)</span>
+                <span class="tag">量子力学 I (A)</span>
+                <span class="tag">量子力学 II (A)</span>
+                <span class="tag">固体物理 (A)</span>
+                <span class="tag">凝聚态前沿导论 (A+)</span>
+                <span class="tag">算法与数据结构 (A-)</span>
+                <span class="tag">计算机编程 (A)</span>
+                <span class="tag">信号与系统 (B+)</span>
+            </div>
+            <div style="margin-top:12px; font-size:0.88rem; color:var(--text-light);">
+                📌 辅修计算机专业 · 大三选修《凝聚态量子场论》《强关联计算与模拟》
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 科研经历 ===== -->
+    <section id="research" class="fade-in">
+        <h2 class="section-title">🔬 科研经历</h2>
+        <div class="research-grid">
+
+            <div class="research-card">
+                <h3>双层铁电材料激光激发相变研究</h3>
+                <div class="meta">王涵课题组 · 2024.11 – 2025.11</div>
+                <ul>
+                    <li>围绕双层铁电材料相变开展系统文献调研，发现单层单质 Bi 材料（BP-Bi）可通过轨道耦合发生屈曲进而诱发面内极化</li>
+                    <li>熟练掌握 DFT、rt-TDDFT 理论，以及 VASP、PWmat、Siesta 等计算软件</li>
+                    <li>完成结构弛豫、SCF、non-SCF（能带/态密度/极化）及分子动力学热浴计算</li>
+                    <li>基于 TDDFT 开展激发态动力学模拟，模拟光激发下电子波函数演化及声子模激发</li>
+                    <li>编写脚本做能带对齐、统计滑移距离，使用 phonopy+VASP 计算声子谱</li>
+                    <li>证实红外光（1eV）照射时 BP-Bi 在 600fs 内发生屈曲取向转变，实现铁电极化翻转</li>
+                    <li>✅ 获上海科技大学物质学院 "未来材料创新班" 创新训练项目 <strong>2 万元专项资助</strong></li>
+                </ul>
+            </div>
+
+            <div class="research-card">
+                <h3>Mane-Kele 模型复现及条带单层石墨烯拓扑相研究</h3>
+                <div class="meta">《凝聚态前沿导论》课程项目 · 2024.11 – 2025.11</div>
+                <ul>
+                    <li>与同学合作复现 Mane-Kele 模型，聚焦条带单层石墨烯体系</li>
+                    <li>在自旋轨道耦合（SOC）前提下，证实体系在交错晶格势（SSP）增大时发生拓扑相→拓扑平庸相转变（Z₂ index 1→0）</li>
+                    <li>本人主要负责编写 MATLAB 代码计算不同 SSP 下的能带结构变化</li>
+                </ul>
+            </div>
+
+            <div class="research-card">
+                <h3>全国大学生物理竞赛课题研究</h3>
+                <div class="meta">2023.11 – 2024.06</div>
+                <ul>
+                    <li><strong>第11题 Pumping Straw：</strong>自主学习工程流体力学，构建吸管水泵理论模型，理论成果与实验匹配</li>
+                    <li><strong>第4题 电荷测量计：</strong>学习矩量法，数值计算有限大平行二极板的电荷/电场分布</li>
+                    <li><strong>第1题 火柴盒火柴数量识别：</strong>运用 MFCC 特征提取 + CNN 神经网络构建声音识别分类模型</li>
+                </ul>
+            </div>
+
+            <div class="research-card">
+                <h3>美国大学生物理竞赛 · 建模手</h3>
+                <div class="meta">2025.01</div>
+                <ul>
+                    <li>基于地区旅游业历史数据构建行业发展态势分析模型</li>
+                    <li>编写代码模拟计算得到具体预测数据，为税收、限流等政策提供指导</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 相关技能 ===== -->
+    <section id="skills" class="fade-in">
+        <h2 class="section-title">🛠 相关技能</h2>
+        <div class="skills-wrap">
+            <div class="skill-group">
+                <h4>编程语言</h4>
+                <div class="skill-tags">
+                    <span class="tag">Python <span class="level">熟练</span></span>
+                    <span class="tag">Matlab <span class="level">熟练</span></span>
+                    <span class="tag">C / C++ <span class="level">使用过</span></span>
+                    <span class="tag">Fortran <span class="level">接触过</span></span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h4>DFT 计算软件</h4>
+                <div class="skill-tags">
+                    <span class="tag">VASP <span class="level">熟练</span></span>
+                    <span class="tag">PWmat <span class="level">熟练</span></span>
+                    <span class="tag">Siesta <span class="level">用过</span></span>
+                    <span class="tag">TDAP <span class="level">用过</span></span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h4>语言能力</h4>
+                <div class="skill-tags">
+                    <span class="tag">英语 CET-4 <span class="level">596</span></span>
+                    <span class="tag">英语 CET-6 <span class="level">565</span></span>
+                    <span class="tag">物理英文文献 <span class="level">大量阅读</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 获奖情况 ===== -->
+    <section id="awards" class="fade-in">
+        <h2 class="section-title">🏆 获奖情况</h2>
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-icon gold">🏅</div>
+                <div class="award-info">
+                    <h4>全国大学生物理竞赛 · 全国二等奖</h4>
+                    <span class="date">2024-08</span>
+                </div>
+            </div>
+            <div class="award-card">
+                <div class="award-icon blue">📊</div>
+                <div class="award-info">
+                    <h4>美国数学建模竞赛 · H奖 (Honorable Mention)</h4>
+                    <span class="date">2025-05</span>
+                </div>
+            </div>
+            <div class="award-card">
+                <div class="award-icon green">🌟</div>
+                <div class="award-info">
+                    <h4>2023-2024 年度优秀学生</h4>
+                    <span class="date">2025-02</span>
+                </div>
+            </div>
+            <div class="award-card">
+                <div class="award-icon purple">🌟</div>
+                <div class="award-info">
+                    <h4>2024-2025 年度优秀学生</h4>
+                    <span class="date">2026-02</span>
+                </div>
+            </div>
+            <div class="award-card">
+                <div class="award-icon orange">🤝</div>
+                <div class="award-info">
+                    <h4>沪滇"手拉手"社会实践 · 优秀辅导员</h4>
+                    <span class="date">2024-08</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 个人经历 ===== -->
+    <section id="experience" class="fade-in">
+        <h2 class="section-title">📌 个人经历</h2>
+        <ul class="exp-list">
+            <li>
+                <span class="dot"></span>
+                <span><strong>2024 暑假</strong> — 赴云南建水六中开展社会实践，调研学生职业发展规划区域差异，深化对西部发展及国家战略的认知</span>
+            </li>
+            <li>
+                <span class="dot"></span>
+                <span><strong>2025 暑假</strong> — 参与产业实践，参观上海迪士尼发电厂</span>
+            </li>
+            <li>
+                <span class="dot"></span>
+                <span><strong>2026 年</strong> — 参与无偿献血，践行社会责任</span>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <p>© 2026 陶毅远 · 用 ❤️ 打造 · 保留所有权利</p>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+    // 1. 粒子动画
+    (function initParticles() {
+        const container = document.getElementById('particles');
+        const count = 30;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 10) + 's';
+            container.appendChild(p);
+        }
+    })();
+
+    // 2. 滚动渐入动画 (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
